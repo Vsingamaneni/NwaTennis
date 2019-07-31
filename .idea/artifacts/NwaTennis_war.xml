@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="NwaTennis:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="NwaTennis-1.0.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="NwaTennis:war exploded" />
+    </root>
+  </artifact>
+</component>
