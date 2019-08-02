@@ -2,6 +2,10 @@ package com.sports.cricket.model;
 
 public class Fixtures {
 
+    public Fixtures() {
+        this.updateType = "general";
+    }
+
     private int matchNumber;
 
     private String team1;
@@ -43,6 +47,8 @@ public class Fixtures {
     private String referee;
 
     private String result;
+
+    private String updateType;
 
     private int sets;
 
@@ -220,5 +226,13 @@ public class Fixtures {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public String getUpdateType() {
+        return updateType;
+    }
+
+    public void setUpdateType(String updateType) {
+        this.updateType = updateType;
     }
 }

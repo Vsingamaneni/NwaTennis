@@ -146,7 +146,7 @@ public class ScheduleDaoImpl implements ScheduleDao, Serializable {
             type = MENS_KNOCKOUT;
         }
 
-        String sql = "UPDATE " + type + " SET homeTeamScore1 = ? , awayTeamScore1 = ?, homeTeamScore2 = ? , awayTeamScore2 = ?, homeTeamScore3 = ? , awayTeamScore3 = ?  where matchNumber = ?";
+        String sql = "UPDATE " + type + " SET homeTeamScore = ? , awayTeamScore = ?, homeTeamScore1 = ? , awayTeamScore1 = ?, homeTeamScore2 = ? , awayTeamScore2 = ?, homeTeamScore3 = ? , awayTeamScore3 = ?  where matchNumber = ?";
 
 
         Connection conn = null;
@@ -155,13 +155,15 @@ public class ScheduleDaoImpl implements ScheduleDao, Serializable {
         try {
             conn = dataSource.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, fixtures.getHomeTeamScore1());
-            ps.setString(2, fixtures.getAwayTeamScore1());
-            ps.setString(3, fixtures.getHomeTeamScore2());
-            ps.setString(4, fixtures.getAwayTeamScore2());
-            ps.setString(5, fixtures.getHomeTeamScore3());
-            ps.setString(6, fixtures.getAwayTeamScore3());
-            ps.setInt(7, fixtures.getMatchNumber());
+            ps.setString(1, fixtures.getHomeTeamScore());
+            ps.setString(2, fixtures.getAwayTeamScore());
+            ps.setString(3, fixtures.getHomeTeamScore1());
+            ps.setString(4, fixtures.getAwayTeamScore1());
+            ps.setString(5, fixtures.getHomeTeamScore2());
+            ps.setString(6, fixtures.getAwayTeamScore2());
+            ps.setString(7, fixtures.getHomeTeamScore3());
+            ps.setString(8, fixtures.getAwayTeamScore3());
+            ps.setInt(9, fixtures.getMatchNumber());
 
             ps.executeUpdate();
             ps.close();

@@ -266,6 +266,14 @@ public class UserController implements Serializable {
                 if (!CollectionUtils.isEmpty(knockOutFixture)) {
                     Fixtures retrievedFixture = knockOutFixture.get(0);
 
+                    retrievedFixture.setUpdateType("knockouts");
+
+                    if (retrievedFixture.getMatchType().equalsIgnoreCase("r16")){
+                        retrievedFixture.setMatchType(fixtures.getMatchType());
+                        model.addAttribute("retrievedFixture", retrievedFixture);
+                        return "users/matchResult";
+                    }
+
                     if (null != retrievedFixture.getHomeTeamScore1()){
                         model.addAttribute("msg", "Match Result is already Updated. Contact Core team to modify/update.");
                     } else if (null != retrievedFixture) {
@@ -289,16 +297,17 @@ public class UserController implements Serializable {
     @RequestMapping(value = "/matchResult/update", method = RequestMethod.POST)
     public String saveMatchResult(@ModelAttribute("retrievedFixture") Fixtures fixtures, ModelMap model, HttpSession httpSession) {
         model.addAttribute("session", httpSession.getAttribute("session"));
+
         boolean isSuccess = false;
         if (null != fixtures && (null != fixtures.getHomeTeamScore() && !fixtures.getHomeTeamScore().equalsIgnoreCase("")
-        && null != fixtures.getAwayTeamScore() && !fixtures.getAwayTeamScore().equalsIgnoreCase(""))){
+                && null != fixtures.getAwayTeamScore() && !fixtures.getAwayTeamScore().equalsIgnoreCase(""))) {
             isSuccess = scheduleService.updateFixture(fixtures.getMatchType(), fixtures);
         }
 
         if (!isSuccess) {
-            return "redirect:/standings/"+fixtures.getMatchType();
+            return "redirect:/standings/" + fixtures.getMatchType();
         } else {
-            return "redirect:/fixtures/"+fixtures.getMatchType();
+            return "redirect:/fixtures/" + fixtures.getMatchType();
         }
     }
 
@@ -306,8 +315,14 @@ public class UserController implements Serializable {
     public String saveMultiSetsMatchResult(@ModelAttribute("retrievedFixture") Fixtures fixtures, ModelMap model, HttpSession httpSession) {
         model.addAttribute("session", httpSession.getAttribute("session"));
         boolean isSuccess = false;
-        if (null != fixtures && (null != fixtures.getHomeTeamScore1() && !fixtures.getHomeTeamScore1().equalsIgnoreCase(""))){
+        if (null != fixtures &&
+                (null != fixtures.getHomeTeamScore() && !fixtures.getHomeTeamScore().equalsIgnoreCase("")
+                        && null != fixtures.getAwayTeamScore() && !fixtures.getAwayTeamScore().equalsIgnoreCase("")) ||
+                (null != fixtures.getHomeTeamScore1() && !fixtures.getHomeTeamScore1().equalsIgnoreCase(""))){
             isSuccess = scheduleService.updateMultiFixture(fixtures.getMatchType(), fixtures);
+        } else {
+            model.addAttribute("msg", "Please enter valid score.!");
+            return "redirect:/saveResult/"+fixtures.getMatchType();
         }
 
         if (!isSuccess) {

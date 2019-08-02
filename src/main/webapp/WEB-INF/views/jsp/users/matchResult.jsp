@@ -98,60 +98,120 @@
         <div class='container'>
 
             <c:if test="${empty msg}">
-            <div class='panel panel-primary dialog-panel'>
-                <div class='panel-heading' style="background-color: #082a3e;">
-                    <h1 style="text-align: center;">Update Score</h1>
-                </div>
-                <br />
-                <div class="w3-panel">
-                    <div class="w3-row-padding" style="width:100%;margin:0 auto">
-                        <table class="w3-table w3-striped w3-white" style="text-align: center; align:center; align-content: center">
-                            <tr style="color:black;font-size:20px;text-decoration:none;font-family:Comic Sans MS">
-                                <form modelAttribute="retrievedFixture" action="/matchResult/update" method="POST"
-                                      class='form-horizontal' role='form'>
-                                <tr>
-                                    <td style="text-align:center;">Teams</td>
-                                    <c:if test="${not empty retrievedFixture.homeTeamScore}">
-                                        <td style="text-align:center;">Current Score</td>
-                                    </c:if>
-                                    <td style="text-align:center;">Update Score</td>
-                                    <td style="text-align:center;">Action</td>
-                                <td></td>
-                                </tr>
+                <c:if test="${retrievedFixture.updateType.equalsIgnoreCase('general')}">
+                    <div class='panel panel-primary dialog-panel'>
+                        <div class='panel-heading' style="background-color: #082a3e;">
+                            <h1 style="text-align: center;">Update Score</h1>
+                        </div>
+                        <br />
+                        <div class="w3-panel">
+                            <div class="w3-row-padding" style="width:100%;margin:0 auto">
+                                <table class="w3-table w3-striped w3-white" style="text-align: center; align:center; align-content: center">
+                                    <tr style="color:black;font-size:20px;text-decoration:none;font-family:Comic Sans MS">
+                                        <form modelAttribute="retrievedFixture" action="/matchResult/update/" method="POST"
+                                              class='form-horizontal' role='form'>
+                                    <tr>
+                                        <td style="text-align:center;">Teams</td>
+                                        <c:if test="${not empty retrievedFixture.homeTeamScore}">
+                                            <td style="text-align:center;">Current Score</td>
+                                        </c:if>
+                                        <td style="text-align:center;">Update Score</td>
+                                        <td style="text-align:center;">Action</td>
+                                        <td></td>
+                                    </tr>
 
-                                <tr>
-                                    <input type=hidden id="matchNumber" name="matchNumber"
-                                           value="${retrievedFixture.matchNumber}">
-                                    <input type=hidden id="matchType" name="matchType" value="${retrievedFixture.matchType}">
-                                    <td style="text-align:center;">${retrievedFixture.team1} <br />
-                                                    ${retrievedFixture.team2}</td>
-                                    <c:if test="${not empty retrievedFixture.homeTeamScore}">
+                                    <tr>
+                                        <input type=hidden id="matchNumber" name="matchNumber"
+                                               value="${retrievedFixture.matchNumber}">
+                                        <input type=hidden id="matchType" name="matchType" value="${retrievedFixture.matchType}">
+                                        <input type=hidden id="updateType" name="updateType" value="${retrievedFixture.updateType}">
+                                        <td style="text-align:center;">${retrievedFixture.team1} <br />
+                                                ${retrievedFixture.team2}</td>
+                                        <c:if test="${not empty retrievedFixture.homeTeamScore}">
+                                            <td style="text-align:center;">
+                                                    ${retrievedFixture.homeTeamScore} <br/>
+                                                    ${retrievedFixture.awayTeamScore}
+                                            </td>
+                                        </c:if>
                                         <td style="text-align:center;">
-                                                ${retrievedFixture.homeTeamScore} <br/>
-                                                ${retrievedFixture.awayTeamScore}
+                                            <input type="text" id="homeTeamScore" name="homeTeamScore"
+                                                   style="margin: 0 auto;"/> <br/>
+                                            <input type="text" id="awayTeamScore" name="awayTeamScore"
+                                                   style="margin: 0 auto;"/>
                                         </td>
-                                    </c:if>
-                                    <td style="text-align:center;">
-                                        <input type="text" id="homeTeamScore" name="homeTeamScore"
-                                               style="margin: 0 auto;"/> <br/>
-                                        <input type="text" id="awayTeamScore" name="awayTeamScore"
-                                               style="margin: 0 auto;"/>
-                                    </td>
-                                    <td style="text-align:center;">
-                                        <%--action="/matchResult/update"--%>
-                                        <button class="btn-lg btn-primary" style="height: 90%; background: -webkit-linear-gradient(left, #4f5027, #1f715a, #65fa45); background: -o-linear-gradient(left, #19500f, #297150, #42fa91); background: -moz-linear-gradient(left,#4f5027, #297150, #42fa91); background: linear-gradient(left, #4f5027, #297150, #42fa91);" >Update</button>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <button class="btn-lg btn-danger" style="height: 60%; background: -webkit-linear-gradient(left, #4f5027, #711e3b, #fa6119); background: -o-linear-gradient(left, #501c0c, #297150, #42fa91); background: -moz-linear-gradient(left,#4f5027, #297150, #42fa91); background: linear-gradient(left, #4f5027, #297150, #42fa91);" formaction="/" >Cancel</button>
+                                        <td style="text-align:center;">
+                                                <%--action="/matchResult/update"--%>
+                                            <button class="btn-lg btn-primary" style="height: 90%; background: -webkit-linear-gradient(left, #4f5027, #1f715a, #65fa45); background: -o-linear-gradient(left, #19500f, #297150, #42fa91); background: -moz-linear-gradient(left,#4f5027, #297150, #42fa91); background: linear-gradient(left, #4f5027, #297150, #42fa91);" >Update</button>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <button class="btn-lg btn-danger" style="height: 60%; background: -webkit-linear-gradient(left, #4f5027, #711e3b, #fa6119); background: -o-linear-gradient(left, #501c0c, #297150, #42fa91); background: -moz-linear-gradient(left,#4f5027, #297150, #42fa91); background: linear-gradient(left, #4f5027, #297150, #42fa91);" formaction="/" >Cancel</button>
 
-                                    </td>
-                                </tr>
-                                </form>
-                            </tr>
-                        </table>
-                        <br/><br/>
+                                        </td>
+                                    </tr>
+                                    </form>
+                                    </tr>
+                                </table>
+                                <br/><br/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </c:if>
+                <c:if test="${retrievedFixture.updateType.equalsIgnoreCase('knockouts')}">
+                    <div class='panel panel-primary dialog-panel'>
+                        <div class='panel-heading' style="background-color: #082a3e;">
+                            <h1 style="text-align: center;">Update Score</h1>
+                        </div>
+                        <br />
+                        <div class="w3-panel">
+                            <div class="w3-row-padding" style="width:100%;margin:0 auto">
+                                <table class="w3-table w3-striped w3-white" style="text-align: center; align:center; align-content: center">
+                                    <tr style="color:black;font-size:20px;text-decoration:none;font-family:Comic Sans MS">
+                                        <form modelAttribute="retrievedFixture" action="/matchResult/multiUpdate/" method="POST"
+                                              class='form-horizontal' role='form'>
+                                    <tr>
+                                        <td style="text-align:center;">Teams</td>
+                                        <c:if test="${not empty retrievedFixture.homeTeamScore}">
+                                            <td style="text-align:center;">Current Score</td>
+                                        </c:if>
+                                        <td style="text-align:center;">Update Score</td>
+                                        <td style="text-align:center;">Action</td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <input type=hidden id="matchNumber" name="matchNumber"
+                                               value="${retrievedFixture.matchNumber}">
+                                        <input type=hidden id="matchType" name="matchType" value="${retrievedFixture.matchType}">
+                                        <input type=hidden id="updateType" name="updateType" value="${retrievedFixture.updateType}">
+                                        <td style="text-align:center;">${retrievedFixture.team1} <br />
+                                                ${retrievedFixture.team2}</td>
+                                        <c:if test="${not empty retrievedFixture.homeTeamScore}">
+                                            <td style="text-align:center;">
+                                                    ${retrievedFixture.homeTeamScore} <br/>
+                                                    ${retrievedFixture.awayTeamScore}
+                                            </td>
+                                        </c:if>
+                                        <td style="text-align:center;">
+                                            <input type="text" id="homeTeam" name="homeTeamScore"
+                                                   style="margin: 0 auto;"/> <br/>
+                                            <input type="text" id="awayTeam" name="awayTeamScore"
+                                                   style="margin: 0 auto;"/>
+                                        </td>
+                                        <td style="text-align:center;">
+                                                <%--action="/matchResult/update"--%>
+                                            <button class="btn-lg btn-primary" style="height: 90%; background: -webkit-linear-gradient(left, #4f5027, #1f715a, #65fa45); background: -o-linear-gradient(left, #19500f, #297150, #42fa91); background: -moz-linear-gradient(left,#4f5027, #297150, #42fa91); background: linear-gradient(left, #4f5027, #297150, #42fa91);" >Update</button>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <button class="btn-lg btn-danger" style="height: 60%; background: -webkit-linear-gradient(left, #4f5027, #711e3b, #fa6119); background: -o-linear-gradient(left, #501c0c, #297150, #42fa91); background: -moz-linear-gradient(left,#4f5027, #297150, #42fa91); background: linear-gradient(left, #4f5027, #297150, #42fa91);" formaction="/" >Cancel</button>
+
+                                        </td>
+                                    </tr>
+                                    </form>
+                                    </tr>
+                                </table>
+                                <br/><br/>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
             </c:if>
             <c:if test="${not empty msg}">
             <div class='panel panel-primary dialog-panel'>

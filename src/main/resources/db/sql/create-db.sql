@@ -117,6 +117,7 @@ CREATE TABLE `SCHEDULE_MENS_KNOCKOUTS` (
   `matchDay` int(11) DEFAULT NULL,
   `matchType` varchar(10) DEFAULT NULL,
   `matchKey` varchar(20) DEFAULT NULL,
+  `pool` varchar(20) DEFAULT NULL,
   `sets` INT(11) DEFAULT 3,
   PRIMARY KEY (`matchNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -139,6 +140,7 @@ CREATE TABLE `SCHEDULE_MIXED_KNOCKOUTS` (
   `matchDay` int(11) DEFAULT NULL,
   `matchType` varchar(10) DEFAULT NULL,
   `matchKey` varchar(20) DEFAULT NULL,
+  `pool` varchar(20) DEFAULT NULL,
   `sets` INT(11) DEFAULT 3,
   PRIMARY KEY (`matchNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

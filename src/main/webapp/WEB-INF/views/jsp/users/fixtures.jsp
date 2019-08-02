@@ -124,7 +124,7 @@
     <table class="container">
         <thead>
         <tr>
-            <th><h1 style="color: skyblue; ">Pool ${fixturesList.key}</h1></th>
+            <th><h1 style="color: skyblue; ">Date</h1></th>
             <th><h1 style="color: skyblue; ">Time</h1></th>
             <th><h1 style="color: skyblue; ">Team 1</h1></th>
             <th><h1 style="color: skyblue; ">Score</h1></th>
@@ -143,8 +143,8 @@
             <td style="color: ghostwhite; ">${fixtures.team1}</td>
             <c:if test="${not empty fixtures.homeTeamScore1}">
                 <td style="color: ghostwhite; ">${fixtures.homeTeamScore1} - ${fixtures.awayTeamScore1}<br/>
-                        ${finals.homeTeamScore2} - ${finals.awayTeamScore2} <br/>
-                        ${finals.homeTeamScore3} - ${finals.awayTeamScore3} </td>
+                        ${fixtures.homeTeamScore2} - ${fixtures.awayTeamScore2} <br/>
+                        ${fixtures.homeTeamScore3} - ${fixtures.awayTeamScore3} </td>
             </c:if>
             <c:if test="${empty fixtures.homeTeamScore1}">
                 <td style="color: ghostwhite; "> vs </td>
@@ -185,8 +185,8 @@
             <td style="color: ghostwhite; ">${fixtures.team1}</td>
             <c:if test="${not empty fixtures.homeTeamScore1}">
                 <td style="color: ghostwhite; ">${fixtures.homeTeamScore1} - ${fixtures.awayTeamScore1}<br/>
-                        ${finals.homeTeamScore2} - ${finals.awayTeamScore2} <br/>
-                        ${finals.homeTeamScore3} - ${finals.awayTeamScore3} </td>
+                        ${fixtures.homeTeamScore2} - ${fixtures.awayTeamScore2} <br/>
+                        ${fixtures.homeTeamScore3} - ${fixtures.awayTeamScore3} </td>
             </c:if>
             <c:if test="${empty fixtures.homeTeamScore1}">
                 <td style="color: ghostwhite; "> vs </td>
