@@ -42,6 +42,8 @@ public class Fixtures {
 
     private String referee;
 
+    private String result;
+
     private int sets;
 
     public int getMatchNumber() {
@@ -210,5 +212,13 @@ public class Fixtures {
 
     public void setReferee(String referee) {
         this.referee = referee;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

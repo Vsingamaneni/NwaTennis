@@ -251,14 +251,14 @@
     <table class="container">
         <thead>
         <tr>
-            <th><h1 style="color: skyblue; ">Pool ${fixturesList.key}</h1></th>
-            <th><h1 style="color: skyblue; ">Time</h1></th>
-            <th><h1 style="color: skyblue; ">Team 1</h1></th>
-            <th><h1 style="color: skyblue; ">Score</h1></th>
-            <th><h1 style="color: skyblue; ">Team 2</h1></th>
-            <th><h1 style="color: skyblue; ">Referee</h1></th>
+            <th align = "center"><h1 style="color: skyblue; ">Pool ${fixturesList.key}</h1></th>
+            <th align = "center"><h1 style="color: skyblue; ">Time</h1></th>
+            <th align = "center"><h1 style="color: skyblue; ">Team 1</h1></th>
+            <th align = "center"><h1 style="color: skyblue; ">Score</h1></th>
+            <th align = "center"><h1 style="color: skyblue; ">Team 2</h1></th>
+            <th align = "center"><h1 style="color: skyblue; ">Referee</h1></th>
             <c:if test="${not empty session}">
-                <th><h1 style="color: skyblue; ">Match Key</h1></th>
+                <th align = "center"><h1 style="color: skyblue; ">Match Key</h1></th>
             </c:if>
         </tr>
         </thead>
@@ -268,12 +268,7 @@
             <td align = "center" style="color: ghostwhite; ">${fixtures.matchdate}</td>
             <td align = "center" style="color: ghostwhite; ">${fixtures.time}</td>
             <td align = "center" style="color: ghostwhite; ">${fixtures.team1}</td>
-            <c:if test="${not empty fixtures.homeTeamScore}">
-                <td align = "center" style="color: ghostwhite; ">${fixtures.homeTeamScore} - ${fixtures.awayTeamScore}</td>
-            </c:if>
-            <c:if test="${empty fixtures.homeTeamScore}">
-                <td align = "center" style="color: ghostwhite; "> vs </td>
-            </c:if>
+            <td align = "center" style="color: ghostwhite; ">${fixtures.result}</td>
             <td align = "center" style="color: ghostwhite;">${fixtures.team2}</td>
             <td align = "center" style="color: ghostwhite;" >${fixtures.referee}</td>
             <c:if test="${not empty session}">

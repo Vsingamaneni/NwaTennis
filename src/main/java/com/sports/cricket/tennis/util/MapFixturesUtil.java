@@ -6,6 +6,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MapFixturesUtil {
 
@@ -56,5 +57,22 @@ public class MapFixturesUtil {
             }
         }
         return quartersFixtures;
+    }
+
+    public static void setResults(HashMap<String, List<Fixtures>> fixturesList){
+        if (fixturesList.size() > 0){
+            for (Map.Entry<String, List<Fixtures>> entry : fixturesList.entrySet()) {
+                List<Fixtures> fixtures = entry.getValue();
+                if (!CollectionUtils.isEmpty(fixtures)){
+                    for (Fixtures game : fixtures){
+                        if (null != game.getAwayTeamScore() && null != game.getAwayTeamScore()){
+                            game.setResult(game.getHomeTeamScore() + " - " + game.getAwayTeamScore());
+                        } else {
+                            game.setResult("vs");
+                        }
+                    }
+                }
+            }
+        }
     }
 }

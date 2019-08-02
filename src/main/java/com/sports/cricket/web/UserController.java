@@ -173,6 +173,7 @@ public class UserController implements Serializable {
 
         List<Fixtures> fixtures = scheduleService.fixturesAndResults(type);
         HashMap<String, List<Fixtures>> fixturesList = MapFixturesUtil.getFixtures(fixtures);
+        MapFixturesUtil.setResults(fixturesList);
         model.addAttribute("fixturesList", fixturesList);
         model.addAttribute("session", httpSession.getAttribute("session"));
 
