@@ -44,7 +44,7 @@
         <div class="w3-col s8 w3-bar">
             <span>Welcome, <strong>Player</strong></span><br>
             <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i></a>
-            <a href="/schedule" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i></a>
+            <a href="/fixtures/mens" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-clock-o"></i></a>
             <c:if test="${not empty session}">
                 <a href="/logout" class="w3-bar-item w3-button w3-padding"><i class="fa fa-power-off"></i></a>
             </c:if>
@@ -170,7 +170,7 @@
 
     <!-- Footer -->
     <footer class="w3-container w3-padding-16 w3-light-grey">
-        <p style="text-align: center;">&copy; All rights Reserved @<b>Vamsi Singamaneni</b></p>
+        <p style="text-align: center;">&copy; All rights Reserved @<b>Vamsi Singamaneni & NWA Tennis Core Team</b></p>
     </footer>
 
     <!-- End page content -->

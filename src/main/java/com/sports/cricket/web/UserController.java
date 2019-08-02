@@ -206,7 +206,7 @@ public class UserController implements Serializable {
 
         }
 
-        return "users/schedule";
+        return "users/fixtures";
     }
 
     // Show Standings page
@@ -248,31 +248,40 @@ public class UserController implements Serializable {
         model.addAttribute("session", httpSession.getAttribute("session"));
 
         if (null != fixtures
-                && null != fixtures.getMatchKey()) {
+                && null != fixtures.getMatchKey()
+                && !fixtures.getMatchKey().trim().equalsIgnoreCase("")) {
 
             List<Fixtures> matchDayFixture = scheduleService.fixture(fixtures.getMatchType(), fixtures.getMatchKey());
 
             if (!CollectionUtils.isEmpty(matchDayFixture) && matchDayFixture.size() > 0) {
                 Fixtures retrievedFixture = matchDayFixture.get(0);
-
-                if (null != retrievedFixture) {
-                    retrievedFixture.setMatchType(fixtures.getMatchType());
-                    model.addAttribute("retrievedFixture", retrievedFixture);
+                retrievedFixture.setMatchType(fixtures.getMatchType());
+                if (null != retrievedFixture.getHomeTeamScore()){
+                    model.addAttribute("msg", retrievedFixture.getTeam1() + " (" + retrievedFixture.getHomeTeamScore() + ")   (" + retrievedFixture.getAwayTeamScore() + ") " + retrievedFixture.getTeam2() + " result is updated.  <br /> Contact Core team to modify/update.");
                 }
-            } else{
+                model.addAttribute("retrievedFixture", retrievedFixture);
+            } else {
                 List<Fixtures> knockOutFixture = scheduleService.multiFixture(fixtures.getMatchType(), fixtures.getMatchKey());
-                Fixtures retrievedFixture = knockOutFixture.get(0);
+                if (!CollectionUtils.isEmpty(knockOutFixture)) {
+                    Fixtures retrievedFixture = knockOutFixture.get(0);
 
-                if (null != retrievedFixture) {
-                    retrievedFixture.setMatchType(fixtures.getMatchType());
-                    if (retrievedFixture.getSets() > 1){
-                        model.addAttribute("retrievedFixture", retrievedFixture);
-                        return "users/multipleMatchResult";
+                    if (null != retrievedFixture.getHomeTeamScore1()){
+                        model.addAttribute("msg", "Match Result is already Updated. Contact Core team to modify/update.");
+                    } else if (null != retrievedFixture) {
+                        retrievedFixture.setMatchType(fixtures.getMatchType());
+                        if (retrievedFixture.getSets() > 1) {
+                            model.addAttribute("retrievedFixture", retrievedFixture);
+                            return "users/multipleMatchResult";
+                        }
                     }
+                } else {
+                    model.addAttribute("msg", "Invalid key. Enter the correct key or contact the core team!!");
                 }
-                model.addAttribute("msg", "Invalid key. Enter the correct key or contact the core team!!");
             }
+        } else {
+            model.addAttribute("msg", "Invalid key. Enter the correct key or contact the core team!!");
         }
+
         return "users/matchResult";
     }
 

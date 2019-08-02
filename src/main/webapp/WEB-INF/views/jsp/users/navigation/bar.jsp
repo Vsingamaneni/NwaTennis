@@ -18,6 +18,6 @@
            <a href="/standings/mens" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bar-chart"></i>&nbsp; Standings</a>
            <a href="/saveResult/mens" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-legal"></i>&nbsp; Result</a>
            <a href="#" style="text-decoration : none;color:#1879ff"> &nbsp;&nbsp;&nbsp; -----------------</a>
-           <a href="/login" class="w3-bar-item w3-button w3-padding"><i class="fa fa-child">&nbsp; Admin Login</i></a>
+           <a href="/login" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-child">&nbsp; Admin Login</i></a>
         </head>
      </html>

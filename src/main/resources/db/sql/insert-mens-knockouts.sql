@@ -1,0 +1,2 @@
+insert into tennis.SCHEDULE_MENS_KNOCKOUTS(team1, team2, matchdate, `time`, isActive, matchDay, matchType, matchKey, pool)
+VALUES('VAMSI - SAI', 'PRAVEEN-REVANTH', '18-AUG-2019', '07:30', 1, 3, 'QF', 'ffff', 'A');
