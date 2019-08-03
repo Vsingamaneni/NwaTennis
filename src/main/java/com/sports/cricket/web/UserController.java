@@ -171,6 +171,9 @@ public class UserController implements Serializable {
     public String schedule(ModelMap model, @PathVariable("type") String type, HttpSession httpSession) {
         logger.debug("schedule()");
 
+        model.addAttribute("msg", httpSession.getAttribute("msg"));
+        httpSession.removeAttribute("msg");
+
         List<Fixtures> fixtures = scheduleService.fixturesAndResults(type);
         HashMap<String, List<Fixtures>> fixturesList = MapFixturesUtil.getFixtures(fixtures);
         MapFixturesUtil.setResults(fixturesList);
@@ -222,9 +225,38 @@ public class UserController implements Serializable {
         poolGroups = StandingsUtil.mapFixturesToStandings(fixturesList, poolGroups);
         rankStandings(poolGroups);
         model.addAttribute("standingsMap", poolGroups);
+        model.addAttribute("type", type);
         model.addAttribute("session", httpSession.getAttribute("session"));
 
         return "users/standings";
+    }
+
+    // Show Fixtures page
+    @RequestMapping(value = "/fixtures/{type}/{teamId}", method = RequestMethod.GET)
+    public String standings(@PathVariable("type") String type, @PathVariable("teamId") String teamId, ModelMap model, HttpSession httpSession) {
+
+        List<Fixtures> groupStageFixture = scheduleService.playerFixtures(type, teamId);
+        MapFixturesUtil.mapResults(groupStageFixture);
+
+        List<Fixtures> knockOutFixture = scheduleService.playerKnockOutFixtures(type, teamId);
+
+        if (knockOutFixture.size() > 0) {
+            List<Fixtures> r16 = MapFixturesUtil.getQuartersFixtures(knockOutFixture, "r16");
+            List<Fixtures> qf = MapFixturesUtil.getQuartersFixtures(knockOutFixture, "qf");
+            List<Fixtures> sf = MapFixturesUtil.getQuartersFixtures(knockOutFixture, "sf");
+            List<Fixtures> finals = MapFixturesUtil.getQuartersFixtures(knockOutFixture, "final");
+
+            model.addAttribute("r16", r16);
+            model.addAttribute("qf", qf);
+            model.addAttribute("sf", sf);
+            model.addAttribute("finals", finals.get(0));
+        }
+
+        model.addAttribute("fixturesList", groupStageFixture);
+        model.addAttribute("type", type);
+        model.addAttribute("session", httpSession.getAttribute("session"));
+
+        return "users/playerFixtures";
     }
 
     // Save Result
@@ -232,6 +264,8 @@ public class UserController implements Serializable {
     public String saveResult(@PathVariable("type") String type, ModelMap model, HttpSession httpSession) {
 
         logger.debug("saveResult() : {}");
+        model.addAttribute("msg", httpSession.getAttribute("msg"));
+        httpSession.removeAttribute("msg");
 
         Fixtures fixtures = new Fixtures();
         fixtures.setMatchType(type);
@@ -298,15 +332,19 @@ public class UserController implements Serializable {
     public String saveMatchResult(@ModelAttribute("retrievedFixture") Fixtures fixtures, ModelMap model, HttpSession httpSession) {
         model.addAttribute("session", httpSession.getAttribute("session"));
 
-        boolean isSuccess = false;
+        boolean isSuccess;
         if (null != fixtures && (null != fixtures.getHomeTeamScore() && !fixtures.getHomeTeamScore().equalsIgnoreCase("")
                 && null != fixtures.getAwayTeamScore() && !fixtures.getAwayTeamScore().equalsIgnoreCase(""))) {
             isSuccess = scheduleService.updateFixture(fixtures.getMatchType(), fixtures);
+        } else {
+            httpSession.setAttribute("msg", "Invalid Input. Enter the correct score.!");
+            return "redirect:/saveResult/" + fixtures.getMatchType();
         }
 
         if (!isSuccess) {
             return "redirect:/standings/" + fixtures.getMatchType();
         } else {
+            httpSession.setAttribute("msg", "Match Result is updated successfully!!");
             return "redirect:/fixtures/" + fixtures.getMatchType();
         }
     }
@@ -332,6 +370,36 @@ public class UserController implements Serializable {
         }
     }
 
+    @RequestMapping(value = "/knockouts/{type}", method = RequestMethod.GET)
+    public String saveMultiSetsMatchResult(@PathVariable("type") String type, ModelMap model, HttpSession httpSession) {
+        model.addAttribute("session", httpSession.getAttribute("session"));
+
+        List<Fixtures> fixturesList = scheduleService.fixturesAndResults(type);
+        List<Teams> usersList = registrationService.getAllUsers(type);
+        Map<String, List<TennisStandings>> poolGroups = StandingsUtil.setTennisPoolStandings(usersList);
+        poolGroups = StandingsUtil.mapFixturesToStandings(fixturesList, poolGroups);
+        rankStandings(poolGroups);
+
+        if (type.equalsIgnoreCase("mens")) {
+            List<TennisStandings> topStandings = StandingsUtil.getTop16(poolGroups);
+            List<TennisStandings> topHalf = StandingsUtil.getTop8(topStandings, 0, 7);
+            List<TennisStandings> bottomHalf = StandingsUtil.getBottom8(topStandings, 8, 15);
+
+            model.addAttribute("topHalf", topHalf);
+            model.addAttribute("bottomHalf", bottomHalf);
+            return "users/knockouts/mensKnockOuts";
+        } else {
+            List<TennisStandings> topStandings = StandingsUtil.getTop16(poolGroups);
+
+            List<TennisStandings> topHalf = StandingsUtil.getTop8(topStandings, 0, 1);
+            List<TennisStandings> bottomHalf = StandingsUtil.getBottom8(topStandings, 2, 3);
+
+            model.addAttribute("topHalf", topHalf);
+            model.addAttribute("bottomHalf", bottomHalf);
+            return "users/knockouts/mixedKnockOuts";
+
+        }
+    }
 
     // Show Rules
     @RequestMapping(value = "/rules", method = RequestMethod.GET)

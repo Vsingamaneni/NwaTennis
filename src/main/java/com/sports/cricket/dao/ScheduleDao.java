@@ -17,4 +17,8 @@ public interface ScheduleDao {
     boolean updateFixture(String type, Fixtures fixtures);
 
     boolean updateMultiFixture(String type, Fixtures fixtures);
+
+    List<Fixtures> playerFixtures(String type, String key);
+
+    List<Fixtures> playerKnockOutFixtures(String type, String key);
 }

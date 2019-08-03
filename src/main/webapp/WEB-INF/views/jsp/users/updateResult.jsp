@@ -93,8 +93,9 @@
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
     <c:if test="${not empty msg}">
-    <div class="alert alert-${css} alert-dismissible" role="alert">
-        <strong style="text-align: center; color: #4CAF50">${msg}</strong>
+    <br />
+    <div>
+        <h1 style="text-align: center; color: #af1336">${msg}</h1>
     </div>
     </c:if>
 

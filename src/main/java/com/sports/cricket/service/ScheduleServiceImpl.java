@@ -48,4 +48,14 @@ public class ScheduleServiceImpl implements ScheduleService, Serializable {
         return scheduleDao.updateMultiFixture(type, fixtures);
     }
 
+    @Override
+    public List<Fixtures> playerFixtures(String type, String key) {
+        return scheduleDao.playerFixtures(type, key);
+    }
+
+    @Override
+    public List<Fixtures> playerKnockOutFixtures(String type, String key) {
+        return scheduleDao.playerKnockOutFixtures(type, key);
+    }
+
 }

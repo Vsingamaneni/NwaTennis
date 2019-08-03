@@ -38,7 +38,7 @@ public class ScheduleDaoImpl implements ScheduleDao, Serializable {
 
     @Override
     public List<Schedule> findAll(String name) {
-        String sql = "SELECT * FROM "+name+" where isActive = TRUE";
+        String sql = "SELECT * FROM " + name + " where isActive = TRUE";
 
         List<Schedule> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Schedule.class));
 
@@ -47,13 +47,13 @@ public class ScheduleDaoImpl implements ScheduleDao, Serializable {
 
     @Override
     public List<Fixtures> fixturesAndResults(String type) {
-        if (type.equalsIgnoreCase("mixed")){
+        if (type.equalsIgnoreCase("mixed")) {
             type = MIXED;
-        } else if(type.equalsIgnoreCase("mens")) {
+        } else if (type.equalsIgnoreCase("mens")) {
             type = MENS;
-        } else if(type.equalsIgnoreCase("mixed_knockouts")){
+        } else if (type.equalsIgnoreCase("mixed_knockouts")) {
             type = MIXED_KNOCKOUT;
-        }else if(type.equalsIgnoreCase("mens_knockouts")){
+        } else if (type.equalsIgnoreCase("mens_knockouts")) {
             type = MENS_KNOCKOUT;
         }
 
@@ -66,7 +66,7 @@ public class ScheduleDaoImpl implements ScheduleDao, Serializable {
 
     @Override
     public List<Fixtures> fixture(String type, String key) {
-        if (type.equalsIgnoreCase("mixed")){
+        if (type.equalsIgnoreCase("mixed")) {
             type = MIXED;
         } else {
             type = MENS;
@@ -74,9 +74,9 @@ public class ScheduleDaoImpl implements ScheduleDao, Serializable {
         Map<String, Object> params = new HashMap<>();
         params.put("matchKey", key);
 
-        String sql = "SELECT * FROM " + type + " where matchKey = ?" ;
+        String sql = "SELECT * FROM " + type + " where matchKey = ?";
 
-        List<Fixtures> result = jdbcTemplate.query(sql,new Object[]{key}, new BeanPropertyRowMapper(Fixtures.class));
+        List<Fixtures> result = jdbcTemplate.query(sql, new Object[]{key}, new BeanPropertyRowMapper(Fixtures.class));
 
         return result;
     }
@@ -87,13 +87,13 @@ public class ScheduleDaoImpl implements ScheduleDao, Serializable {
 
         params.put("matchKey", key);
 
-        if (table.equalsIgnoreCase("mixed")){
+        if (table.equalsIgnoreCase("mixed")) {
             table = MIXED_KNOCKOUT;
         } else {
             table = MENS_KNOCKOUT;
         }
 
-        String knockOutSql = "SELECT * FROM " + table + " where matchKey = ?" ;
+        String knockOutSql = "SELECT * FROM " + table + " where matchKey = ?";
 
         List<Fixtures> result = jdbcTemplate.query(knockOutSql, new Object[]{key}, new BeanPropertyRowMapper(Fixtures.class));
 
@@ -102,13 +102,13 @@ public class ScheduleDaoImpl implements ScheduleDao, Serializable {
 
     @Override
     public boolean updateFixture(String type, Fixtures fixtures) {
-        if (type.equalsIgnoreCase("mixed")){
+        if (type.equalsIgnoreCase("mixed")) {
             type = MIXED;
         } else {
             type = MENS;
         }
 
-        String sql = "UPDATE "+type+" SET homeTeamScore = ? , awayTeamScore = ?  where matchNumber = ?";
+        String sql = "UPDATE " + type + " SET homeTeamScore = ? , awayTeamScore = ?  where matchNumber = ?";
 
 
         Connection conn = null;
@@ -131,7 +131,8 @@ public class ScheduleDaoImpl implements ScheduleDao, Serializable {
                 try {
                     conn.close();
                     isSuccess = true;
-                } catch (SQLException e) {}
+                } catch (SQLException e) {
+                }
             }
         }
 
@@ -183,4 +184,41 @@ public class ScheduleDaoImpl implements ScheduleDao, Serializable {
         return isSuccess;
     }
 
+    @Override
+    public List<Fixtures> playerFixtures(String type, String key) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("matchKey", key);
+        params.put("matchKey", key);
+
+        if (type.equalsIgnoreCase("mens")) {
+            type = MENS;
+        } else {
+            type = MIXED;
+        }
+
+        String sql = "SELECT * FROM " + type + " where team1 = ? or team2 = ?";
+
+        List<Fixtures> result = jdbcTemplate.query(sql, new Object[]{key, key}, new BeanPropertyRowMapper(Fixtures.class));
+
+        return result;
+
+    }
+
+    @Override
+    public List<Fixtures> playerKnockOutFixtures(String type, String teamId) {
+        if (type.equalsIgnoreCase("mens")) {
+            type = MENS_KNOCKOUT;
+        } else {
+            type = MIXED_KNOCKOUT;
+        }
+        Map<String, Object> params = new HashMap<>();
+        params.put("matchKey", teamId);
+        params.put("matchKey", teamId);
+
+        String sql = "SELECT * FROM " + type + " where team1 = ? or team2 = ?";
+
+        List<Fixtures> result = jdbcTemplate.query(sql, new Object[]{teamId, teamId}, new BeanPropertyRowMapper(Fixtures.class));
+
+        return result;
+    }
 }

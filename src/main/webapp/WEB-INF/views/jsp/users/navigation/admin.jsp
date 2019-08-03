@@ -14,11 +14,13 @@
     <a href="/fixtures/mixed" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-clock-o"></i>&nbsp; Fixtures</a>
     <a href="/standings/mixed" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bar-chart"></i>&nbsp; Standings</a>
     <a href="/saveResult/mixed" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-legal"></i>&nbsp; Result</a>
+    <a href="/knockouts/mixed" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-legal"></i>&nbsp; Knockouts</a>
     <a href="#" style="text-decoration : none;color:#1879ff"> &nbsp;&nbsp;&nbsp; ---- Men's Doubles ----</a>
     <a href="/pool/mens" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>&nbsp; Player Details</a>
     <a href="/fixtures/mens" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-clock-o"></i>&nbsp; Fixtures</a>
     <a href="/standings/mens" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bar-chart"></i>&nbsp; Standings</a>
     <a href="/saveResult/mens" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-legal"></i>&nbsp; Result</a>
+    <a href="/knockouts/mens" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-legal"></i>&nbsp; Knockouts</a>
     <a href="#" style="text-decoration : none;color:#1879ff"> &nbsp;&nbsp;&nbsp; -----------------</a>
     <a href="/logout" class="w3-bar-item w3-button w3-padding"><i class="fa fa-power-off"></i>&nbsp; Logout</a>
 

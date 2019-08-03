@@ -75,4 +75,16 @@ public class MapFixturesUtil {
             }
         }
     }
+
+    public static void mapResults(List<Fixtures> fixturesList){
+        if (!CollectionUtils.isEmpty(fixturesList)){
+            for (Fixtures fixtures : fixturesList){
+                if (null == fixtures.getAwayTeamScore() && null == fixtures.getAwayTeamScore()){
+                    fixtures.setResult("vs");
+                } else {
+                    fixtures.setResult(fixtures.getHomeTeamScore() + " - " + fixtures.getAwayTeamScore());
+                }
+            }
+        }
+    }
 }

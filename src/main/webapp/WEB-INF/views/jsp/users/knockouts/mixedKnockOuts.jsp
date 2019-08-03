@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: v0s004a
-  Date: 7/14/19
-  Time: 1:05 AM
+  Date: 8/2/19
+  Time: 7:41 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page session="false" %>
@@ -14,22 +14,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Player Info</title>
+    <title>R16 Mens Standings</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/png" href="/resources/login/images/icons/tennis.ico"/>
-    <link rel="stylesheet" href="/resources/core/css/playerInfo.css"/>
+    <link rel="stylesheet" href="/resources/core/css/standings.css"/>
     <style>
         html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         a href{text-decoration: none;}
     </style>
-
 </head>
 
-<body class="w3-light-grey" >
+<body class="w3-light-grey" style="font-family: 'Open Sans', sans-serif;">
 
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
@@ -77,33 +76,71 @@
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
     <br />
 
-    <h1 style="text-align: center;"><span class="#1F2739">Player Details</span></h1>
+    <h1 style="text-align: center; color:black;"><span class="#1F2739">Top Four</span></h1>
     <br /><br />
 
-    <c:forEach items="${poolDetails}" var="poolDetails">
+    <c:if test="${ not empty topHalf}">
 
     <table class="container">
         <thead>
         <tr>
-            <th style="background-color: #185875">#</th>
-            <th style="background-color: #185875">Pool ${poolDetails.key}</th>
-            <th style="background-color: #185875">Phone #</th>
+            <th><h1 style="color: skyblue; text-align: center;">Rank</h1></th>
+            <th><h1 style="color: skyblue; text-align: center;">Team</h1></th>
+            <th><h1 style="color: skyblue; text-align: center;">Played</h1></th>
+            <th><h1 style="color: skyblue; text-align: center;">Won</h1></th>
+            <th><h1 style="color: skyblue; text-align: center;">Lost</h1></th>
+            <th><h1 style="color: skyblue; text-align: center;">Points</h1></th>
+            <th><h1 style="color: skyblue; text-align: center;">Margin</h1></th>
         </tr>
         </thead>
-        <c:forEach items="${poolDetails.value}" var="teamDetails">
+        <c:forEach items="${topHalf}" var="standings">
         <tbody>
         <tr>
-            <td data-column="#">${teamDetails.poolPosition}</td>
-            <td data-column="Team">${teamDetails.firstName} ${teamDetails.lastName} <br /> ${teamDetails.firstName1} ${teamDetails.lastName1}</td>
-            <td data-column="Phone #">${teamDetails.phone} <br /> ${teamDetails.phone1}</td>
+            <td style="color: ghostwhite;">${standings.rank}</td>
+            <td style="color: ghostwhite;">${standings.team}</td>
+            <td style="color: ghostwhite;">${standings.played}</td>
+            <td style="color: ghostwhite;">${standings.won}</td>
+            <td style="color: ghostwhite;">${standings.lost}</td>
+            <td style="color: ghostwhite;">${standings.points}</td>
+            <td style="color: ghostwhite;">${standings.margin}</td>
         </tr>
-        </tbody>
         </c:forEach>
+        </tbody>
     </table>
-        <br /><br />
-    </c:forEach>
+    <br/>
+    </c:if>
 
-</div>
+    <c:if test="${ not empty bottomHalf}">
+
+    <table class="container">
+        <thead>
+        <tr>
+            <th><h1 style="color: skyblue; text-align: center;">Rank</h1></th>
+            <th><h1 style="color: skyblue; text-align: center;">Team</h1></th>
+            <th><h1 style="color: skyblue; text-align: center;">Played</h1></th>
+            <th><h1 style="color: skyblue; text-align: center;">Won</h1></th>
+            <th><h1 style="color: skyblue; text-align: center;">Lost</h1></th>
+            <th><h1 style="color: skyblue; text-align: center;">Points</h1></th>
+            <th><h1 style="color: skyblue; text-align: center;">Margin</h1></th>
+        </tr>
+        </thead>
+        <c:forEach items="${bottomHalf}" var="standings">
+        <tbody>
+        <tr>
+            <td style="color: ghostwhite;">${standings.rank}</td>
+            <td style="color: ghostwhite;">${standings.team}</td>
+            <td style="color: ghostwhite;">${standings.played}</td>
+            <td style="color: ghostwhite;">${standings.won}</td>
+            <td style="color: ghostwhite;">${standings.lost}</td>
+            <td style="color: ghostwhite;">${standings.points}</td>
+            <td style="color: ghostwhite;">${standings.margin}</td>
+        </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+    <br/>
+    </c:if>
+
 </body>
 
 <br />

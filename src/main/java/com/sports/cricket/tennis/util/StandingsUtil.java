@@ -126,6 +126,54 @@ public class StandingsUtil {
         });
     }
 
+    public static List<TennisStandings> getTop16(Map<String, List<TennisStandings>> standings){
+        List<TennisStandings> topList = new ArrayList<>();
+
+        for (Map.Entry<String,List<TennisStandings>> entry : standings.entrySet()) {
+            List<TennisStandings> standingsList = entry.getValue();
+            if (!CollectionUtils.isEmpty(standingsList)){
+                for (TennisStandings tennisStandings : standingsList){
+                    if (tennisStandings.getRank() == 1 || tennisStandings.getRank() == 2){
+                        topList.add(tennisStandings);
+                    }
+                }
+            }
+        }
+        Collections.sort(topList, SORT_POINTS_MARGIN);
+
+        int rank = 1;
+        for (TennisStandings tennisStandings : topList){
+            tennisStandings.setRank(rank);
+            rank = rank + 1;
+        }
+        return topList;
+    }
+
+    public static List<TennisStandings> getTop8(List<TennisStandings> tennisStandings, int start, int end){
+        List<TennisStandings> topEight = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(tennisStandings)){
+            int count;
+
+            for (count = start ; count <= end ; count++){
+                topEight.add(tennisStandings.get(count));
+            }
+        }
+        return topEight;
+    }
+
+    public static List<TennisStandings> getBottom8(List<TennisStandings> tennisStandings, int start, int end){
+        List<TennisStandings> bottomEight = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(tennisStandings)){
+            int count;
+
+            for (count = start ; count <= end ; count++){
+                bottomEight.add(tennisStandings.get(count));
+            }
+        }
+        return bottomEight;
+    }
+
+
     private static final Comparator<TennisStandings> SORT_POINTS_MARGIN = Comparator
             .comparing(TennisStandings::getPoints)
             .thenComparingInt(TennisStandings::getMargin).reversed();

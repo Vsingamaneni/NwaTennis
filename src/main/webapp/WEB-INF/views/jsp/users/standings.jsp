@@ -97,7 +97,7 @@
         <tbody>
         <tr>
             <td style="color: ghostwhite;">${standings.rank}</td>
-            <td style="color: ghostwhite;">${standings.team}</td>
+            <td style="color: ghostwhite;"><a style="text-decoration: none;" href="/fixtures/${type}/${standings.team}">${standings.team}</a></td>
             <td style="color: ghostwhite;">${standings.played}</td>
             <td style="color: ghostwhite;">${standings.won}</td>
             <td style="color: ghostwhite;">${standings.lost}</td>
