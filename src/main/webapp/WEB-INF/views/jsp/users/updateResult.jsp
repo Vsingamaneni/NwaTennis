@@ -25,20 +25,8 @@
     <link rel="stylesheet" href="/resources/core/css/table.css"/>
     <link rel="stylesheet" href="/resources/core/css/format_css.css"/>
     <style>
-        html, body, h1, h2, h3, h4, h5 {
-            font-family: "Raleway", sans-serif
-        }
-        input[type=text] {
-            padding: 0;
-            height: 30px;
-            position: relative;
-            left: 0;
-            outline: none;
-            border: 1px solid #cdcdcd;
-            border-color: rgba(0, 0, 0, .15);
-            background-color: white;
-            font-size: 16px;
-        }
+        html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        a href{text-decoration: none;}
     </style>
 </head>
 
@@ -116,9 +104,9 @@
                                         <input type=hidden id="matchNumber" name="matchNumber"
                                                value="${fixtures.matchNumber}">
                                         <input type=hidden id="matchType" name="matchType" value="${fixtures.matchType}">
-                                        <td style="text-align:left;">Enter Match Key</td>
-                                        <td style="text-align:left;"> <input type="text" id="matchKey" name="matchKey" style="width: 50%;margin-right: -4px;" /></td>
-                                        <td style="text-align:left;">
+                                        <td style="text-align:center;">Enter Match Key</td>
+                                        <td style="text-align:center;"> <input type="text" id="matchKey" name="matchKey" style="width: 75%;margin-right: -4px;" /></td>
+                                        <td style="text-align:center;">
                                            <%-- <button type="submit" class="btn-lg btn-primary" style= "border-radius: 8px;"><a
                                                     style="color:white;font-size:15px;text-decoration:none;font-family:Comic Sans MS"
                                                     formaction="/fixture/retrieve"> Search</a>

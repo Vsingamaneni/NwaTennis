@@ -246,7 +246,7 @@
     </c:if>
 
 
-    <h1 style="color: #1F2739"><span class="#1F2739">Group Stages</span></h1>
+    <h1 style="color: #1F2739"><span class="#1F2739">Qualifiers</span></h1>
     <c:forEach items="${fixturesList}" var="fixturesList">
     <table class="container">
         <thead>
@@ -268,7 +268,12 @@
             <td align = "center" style="color: ghostwhite; ">${fixtures.matchdate}</td>
             <td align = "center" style="color: ghostwhite; ">${fixtures.time}</td>
             <td align = "center" style="color: ghostwhite; ">${fixtures.team1}</td>
-            <td align = "center" style="color: ghostwhite; ">${fixtures.result}</td>
+            <c:if test="${not empty fixtures.viewStats}">
+                <td align = "center" style="color: ghostwhite; "><a style="text-decoration: none;" href="${fixtures.viewStats}" target="_blank">${fixtures.result}</a></td>
+            </c:if>
+            <c:if test="${empty fixtures.viewStats}">
+                <td align="center" style="color: ghostwhite; ">${fixtures.result}</td>
+            </c:if>
             <td align = "center" style="color: ghostwhite;">${fixtures.team2}</td>
             <td align = "center" style="color: ghostwhite;" >${fixtures.referee}</td>
             <c:if test="${not empty session}">

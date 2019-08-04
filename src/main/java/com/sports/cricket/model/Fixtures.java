@@ -50,6 +50,10 @@ public class Fixtures {
 
     private String updateType;
 
+    private String stats;
+
+    private String viewStats;
+
     private int sets;
 
     public int getMatchNumber() {
@@ -234,5 +238,21 @@ public class Fixtures {
 
     public void setUpdateType(String updateType) {
         this.updateType = updateType;
+    }
+
+    public String getViewStats() {
+        return viewStats;
+    }
+
+    public void setViewStats(String viewStats) {
+        this.viewStats = viewStats;
+    }
+
+    public String getStats() {
+        return stats;
+    }
+
+    public void setStats(String stats) {
+        this.stats = stats;
     }
 }

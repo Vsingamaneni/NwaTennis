@@ -220,7 +220,7 @@
     </c:if>
 
 
-    <h1 style="color: #1F2739"><span class="#1F2739">Group Stages</span></h1>
+    <h1 style="color: #1F2739"><span class="#1F2739">Qualifiers</span></h1>
     <c:if test="${not empty fixturesList}">
     <table class="container">
         <thead>

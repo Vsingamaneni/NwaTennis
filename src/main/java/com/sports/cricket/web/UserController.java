@@ -29,6 +29,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import static com.sports.cricket.tennis.util.MapFixturesUtil.getQuartersFixtures;
+import static com.sports.cricket.tennis.util.MapFixturesUtil.getSessionFixtures;
 import static com.sports.cricket.tennis.util.MapFixturesUtil.mapRoundOfSixteenFixtures;
 import static com.sports.cricket.tennis.util.StandingsUtil.rankStandings;
 
@@ -211,6 +212,35 @@ public class UserController implements Serializable {
         }
 
         return "users/fixtures";
+    }
+
+    // Show fixtures page
+    @RequestMapping(value = "/session/fixtures", method = RequestMethod.GET)
+    public String fixturesPerSession(ModelMap model, HttpSession httpSession) {
+        logger.debug("fixturesPerSession()");
+
+        /*if (null != httpSession.getAttribute("session")) {*/
+
+            List<Fixtures> fixtures = scheduleService.fixturesAndResults("mens");
+            MapFixturesUtil.mapResults(fixtures);
+
+            List<Fixtures> knockOutFixtures = scheduleService.fixturesAndResults("mens_knockouts");
+            MapFixturesUtil.mapKnockOutResults(knockOutFixtures);
+
+            List<Fixtures> combinedFixtures = new ArrayList<>(fixtures);
+            if (knockOutFixtures.size() >0){
+                combinedFixtures = MapFixturesUtil.addAllFixtures(knockOutFixtures, combinedFixtures);
+            }
+
+            Map<String, Map<String, List<Fixtures>>>  sessionFixtures = getSessionFixtures(combinedFixtures);
+
+            model.addAttribute("session", httpSession.getAttribute("session"));
+            model.addAttribute("sessionFixtures", sessionFixtures);
+
+            return "users/sessionFixtures";
+        /*} else {
+            return "/";
+        }*/
     }
 
     // Show Standings page
