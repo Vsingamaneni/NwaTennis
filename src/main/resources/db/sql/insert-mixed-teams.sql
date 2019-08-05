@@ -1,60 +1,30 @@
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(5, 'Vidya - Ravi', 'Ayyappa - Vijji', '09-AUG', '07:00 PM', NULL, NULL, NULL, 1, 1, 'A', '', 1, 'Shuba - Arun & Ananya - Krish');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(6, 'Dhanu - Subangi', 'Thorana - Swetha', '09-AUG', '07:00 PM', NULL, NULL, NULL, 1, 1, 'A', '', 1, 'Aryan - Sangeetha  & Ranjith - Amrusha');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(7, 'Vidya - Ravi', 'Dhanu - Subangi', '10-AUG', '07:15 AM', NULL, NULL, NULL, 1, 1, 'A', '', 1, 'Gautam - Vijayasree & Ranjith - Amrusha');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(8, 'Srini - Deepthi', 'Ayyappa - Vijji', '10-AUG', '08:30 AM', NULL, NULL, NULL, 1, 1, 'A', '', 1, 'Aryan - Sangeetha & Shuba - Arun');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(9, 'Dhanu - Subangi', 'Ayyappa - Vijji', '10-AUG', '07:00 PM', NULL, NULL, NULL, 1, 1, 'A', '', 1, 'Ananya - Krish & Gautam - Vijayasree');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(10, 'Thorana - Swetha', 'Srini - Deepthi', '10-AUG', '07:00 PM', NULL, NULL, NULL, 1, 1, 'A', '', 1, 'Shuba - Arun & Ranjith - Amrusha');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(11, 'Vidya - Ravi', 'Srini - Deepthi', '11-AUG', '07:15 AM', NULL, NULL, NULL, 1, 1, 'A', '', 1, 'Ranjith - Amrusha & Ananya - Krish');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(12, 'Ayyappa - Vijji', 'Thorana - Swetha', '11-AUG', '07:00 AM', NULL, NULL, NULL, 1, 1, 'A', '', 1, 'Aryan - Sangeetha & Gautam - Vijayasree');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(13, 'Vidya - Ravi', 'Thorana - Swetha', '11-AUG', '08:30 PM', NULL, NULL, NULL, 1, 1, 'A', '', 1, 'Gautam - Vijayasree & Shuba - Arun');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(14, 'Srini - Deepthi', 'Dhanu - Subangi', '11-AUG', '07:00 PM', NULL, NULL, NULL, 1, 1, 'A', '', 1, 'Aryan - Sangeetha & Ananya - Krish');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(15, 'Aryan - Sangeetha', 'Ranjith - Amrusha', '09-AUG', '07:15 PM', NULL, NULL, NULL, 1, 1, 'B', '', 1, 'Dhanu - Subangi & Thorana - Swetha');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(16, 'Shuba - Arun', 'Ananya - Krish', '09-AUG', '08:15 PM', NULL, NULL, NULL, 1, 1, 'B', '', 1, 'Vidya - Ravi & Ayyappa - Vijji');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(17, 'Aryan - Sangeetha', 'Shuba - Arun', '10-AUG', '07:15 AM', NULL, NULL, NULL, 1, 1, 'B', '', 1, 'Srini - Deepthi & Ayyappa - Vijji');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(18, 'Gautam - Vijayasree', 'Ranjith - Amrusha', '10-AUG', '08:30 AM', NULL, NULL, NULL, 1, 1, 'B', '', 1, 'Vidya - Ravi & Dhanu - Subangi');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(19, 'Shuba - Arun', 'Ranjith - Amrusha', '10-AUG', '07:15 PM', NULL, NULL, NULL, 1, 1, 'B', '', 1, 'Thorana - Swetha & Srini - Deepthi');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(20, 'Ananya - Krish', 'Gautam - Vijayasree', '10-AUG', '08:15 PM', NULL, NULL, NULL, 1, 1, 'B', '', 1, 'Dhanu - Subangi & Ayyappa - Vijji');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(21, 'Aryan - Sangeetha', 'Gautam - Vijayasree', '11-AUG', '08:30 AM', NULL, NULL, NULL, 1, 1, 'B', '', 1, 'Ayyappa - Vijji & Thorana - Swetha');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(22, 'Ranjith - Amrusha', 'Ananya - Krish', '11-AUG', '08:15 AM', NULL, NULL, NULL, 1, 1, 'B', '', 1, 'Vidya - Ravi & Srini - Deepthi');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(23, 'Aryan - Sangeetha', 'Ananya - Krish', '11-AUG', '07:15 PM', NULL, NULL, NULL, 1, 1, 'B', '', 1, 'Srini - Deepthi & Dhanu - Subangi');
-INSERT INTO tennis.SCHEDULE_MIXED
-(matchNumber, team1, team2, matchdate, `time`, winner, homeTeamScore, awayTeamScore, isActive, matchDay, pool, matchKey, `sets`, referee)
-VALUES(24, 'Gautam - Vijayasree', 'Shuba - Arun', '11-AUG', '08:30 PM', NULL, NULL, NULL, 1, 1, 'B', '', 1, 'Vidya - Ravi & Thorana - Swetha');
+INSERT INTO tennis.TEAMS_MIXED
+( firstName, lastName, email, phone, firstName1, lastName1, email1, phone1, pool, `rank`, poolPosition)
+VALUES( 'Dhanu', '', '', '5053635600', 'Subangi', '', '', '', 'A', NULL, 'A1');
+INSERT INTO tennis.TEAMS_MIXED
+( firstName, lastName, email, phone, firstName1, lastName1, email1, phone1, pool, `rank`, poolPosition)
+VALUES( 'Vidya', '', '', '4697400798', 'Ravi', '', '', '', 'A', NULL, 'A2');
+INSERT INTO tennis.TEAMS_MIXED
+( firstName, lastName, email, phone, firstName1, lastName1, email1, phone1, pool, `rank`, poolPosition)
+VALUES( 'Ayyappa', '', '', '7047752430', 'Vijji', '', '', '', 'A', NULL, 'A3');
+INSERT INTO tennis.TEAMS_MIXED
+( firstName, lastName, email, phone, firstName1, lastName1, email1, phone1, pool, `rank`, poolPosition)
+VALUES( 'Thorana', '', '', '4793199005', 'Swetha', '', '', '', 'A', NULL, 'A4');
+INSERT INTO tennis.TEAMS_MIXED
+( firstName, lastName, email, phone, firstName1, lastName1, email1, phone1, pool, `rank`, poolPosition)
+VALUES( 'Srini', '', '', '', 'Deepthi', '', '', '', 'A', NULL, 'A5');
+INSERT INTO tennis.TEAMS_MIXED
+( firstName, lastName, email, phone, firstName1, lastName1, email1, phone1, pool, `rank`, poolPosition)
+VALUES( 'Shuba', '', '', '4795448246', 'Arun', '', '', '', 'B', NULL, 'B1');
+INSERT INTO tennis.TEAMS_MIXED
+( firstName, lastName, email, phone, firstName1, lastName1, email1, phone1, pool, `rank`, poolPosition)
+VALUES( 'Aryan', '', '', '6303476754', 'Sangeetha', '', '', '', 'B', NULL, 'B2');
+INSERT INTO tennis.TEAMS_MIXED
+( firstName, lastName, email, phone, firstName1, lastName1, email1, phone1, pool, `rank`, poolPosition)
+VALUES( 'Ranjith', '', '', '3129122721', 'Amrusha', '', '', '', 'B', NULL, 'B3');
+INSERT INTO tennis.TEAMS_MIXED
+( firstName, lastName, email, phone, firstName1, lastName1, email1, phone1, pool, `rank`, poolPosition)
+VALUES( 'Ananya', '', '', '4793268529', 'Krish', '', '', '', 'B', NULL, 'B4');
+INSERT INTO tennis.TEAMS_MIXED
+( firstName, lastName, email, phone, firstName1, lastName1, email1, phone1, pool, `rank`, poolPosition)
+VALUES( 'Gautam', '', '', '4795448246', 'Vijayasree', '', '', '', 'B', NULL, 'B5');

@@ -3,9 +3,10 @@ package com.sports.cricket.tennis.util;
 import com.sports.cricket.model.Fixtures;
 import org.springframework.util.CollectionUtils;
 
-import java.text.Collator;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class MapFixturesUtil {
 
@@ -118,47 +119,59 @@ public class MapFixturesUtil {
         return scheduleFixtures;
     }
 
-    public static List<Map.Entry<String, Map<String, List<Fixtures>>>>  getSessionFixtures(List<Fixtures> fixturesList){
-        Map<String, Map<String, List<Fixtures>>> sessionFixtures = new HashMap<>();
-        String key;
-        String time = null;
+    public static LinkedHashMap<String, List<Fixtures>> mapSessionFixtures(List<Fixtures> fixturesList){
+        Map<Integer, List<Fixtures>> sessionFixtures = new HashMap<>();
         if (!CollectionUtils.isEmpty(fixturesList)){
             for (Fixtures fixtures : fixturesList){
-                if (fixtures.getTime().contains("AM")){
-                    time = "Morning";
-                } else if (fixtures.getTime().contains("PM")){
-                    time = "Evening";
+                if (fixtures.getSession() == 0 ){
+                    continue;
                 }
-                key = fixtures.getMatchdate();
-                if (sessionFixtures.containsKey(key)){
-                    Map<String, List<Fixtures>> currentSession = sessionFixtures.get(key);
-                    if (currentSession.containsKey(time)){
-                        List<Fixtures> timeFixtures = currentSession.get(time);
-                        timeFixtures.add(fixtures);
-                    } else {
-                        List<Fixtures> sessionGames = new ArrayList<>();
-                        sessionGames.add(fixtures);
-                        currentSession.putIfAbsent(time, sessionGames);
-                    }
+                if (sessionFixtures.containsKey(fixtures.getSession())){
+                    sessionFixtures.get(fixtures.getSession()).add(fixtures);
                 } else {
-                    Map<String, List<Fixtures>> newSessionMap = new HashMap<>();
-                    List<Fixtures> currentSession = new ArrayList<>();
-                    currentSession.add(fixtures);
-                    newSessionMap.putIfAbsent(time, currentSession);
-                    sessionFixtures.putIfAbsent(fixtures.getMatchdate(), newSessionMap);
+                    List<Fixtures> sessionDetails = new ArrayList<>();
+                    sessionDetails.add(fixtures);
+                    sessionFixtures.put(fixtures.getSession(), sessionDetails);
                 }
             }
         }
 
-        Collator collator = Collator.getInstance(Locale.US);
-        collator.setStrength(Collator.PRIMARY);
+        sessionFixtures = sortByKeys(sessionFixtures);
 
-        List<Map.Entry<String, Map<String, List<Fixtures>>>> result =
-                sessionFixtures.entrySet()
-                        .stream()
-                        .sorted(Map.Entry.comparingByKey(collator))
-                        .collect(Collectors.toList());
-
-        return result;
+        return replaceSessionNumbers(sessionFixtures);
     }
+
+    public static <K, V> Map<K,V> sortByKeys(Map<K,V> unsortedMap)
+    {
+        // construct a TreeMap from given Map and return it
+        return new TreeMap<>(unsortedMap);
+    }
+
+    public static LinkedHashMap<String, List<Fixtures>> replaceSessionNumbers(Map<Integer, List<Fixtures>> sessionFixtures){
+        LinkedHashMap<String, List<Fixtures>> finalSessionDetails = new LinkedHashMap<>();
+        for (Map.Entry<Integer, List<Fixtures>> entry : sessionFixtures.entrySet()){
+            List<Fixtures> fixturesList = entry.getValue();
+            if (fixturesList.size() > 0){
+                String key = null;
+                for (Fixtures fixtures : fixturesList){
+                    key = fixtures.getMatchdate() + getTimeSlot(fixtures);
+                    break;
+                }
+                if (!finalSessionDetails.containsKey(key)){
+                    finalSessionDetails.putIfAbsent(key,fixturesList );
+                }
+            }
+        }
+        return finalSessionDetails;
+    }
+
+    public static String getTimeSlot(Fixtures fixtures){
+        if (fixtures.getTime().contains("AM")){
+            return " (Morning)";
+        } else if (fixtures.getTime().contains("PM")){
+            return " (Evening)";
+        }
+        return "";
+    }
+
 }

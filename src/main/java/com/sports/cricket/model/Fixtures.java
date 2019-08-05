@@ -56,6 +56,8 @@ public class Fixtures {
 
     private int sets;
 
+    private int session;
+
     public int getMatchNumber() {
         return matchNumber;
     }
@@ -254,5 +256,13 @@ public class Fixtures {
 
     public void setStats(String stats) {
         this.stats = stats;
+    }
+
+    public int getSession() {
+        return session;
+    }
+
+    public void setSession(int session) {
+        this.session = session;
     }
 }

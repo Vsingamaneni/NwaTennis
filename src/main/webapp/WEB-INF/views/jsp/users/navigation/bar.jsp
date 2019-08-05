@@ -9,7 +9,6 @@
      <html>
         <head>
            <a href="/" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-home fa-fw"></i>&nbsp; Home</a>
-           <a href="/session/fixtures" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-info-circle"></i>&nbsp; Games@Session</a>
            <a href="#" style="text-decoration : none;color:#1879ff"> &nbsp;&nbsp;&nbsp; ---- Mixed Doubles ----</a>
            <a href="/fixtures/mixed" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-clock-o"></i>&nbsp; Fixtures</a>
            <a href="/standings/mixed" style="text-decoration : none;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bar-chart"></i>&nbsp; Standings</a>

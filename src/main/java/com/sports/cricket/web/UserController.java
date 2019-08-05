@@ -1,10 +1,7 @@
 package com.sports.cricket.web;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,7 +26,6 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import static com.sports.cricket.tennis.util.MapFixturesUtil.getQuartersFixtures;
-import static com.sports.cricket.tennis.util.MapFixturesUtil.getSessionFixtures;
 import static com.sports.cricket.tennis.util.MapFixturesUtil.mapRoundOfSixteenFixtures;
 import static com.sports.cricket.tennis.util.StandingsUtil.rankStandings;
 
@@ -219,28 +215,42 @@ public class UserController implements Serializable {
     public String fixturesPerSession(ModelMap model, HttpSession httpSession) {
         logger.debug("fixturesPerSession()");
 
-        /*if (null != httpSession.getAttribute("session")) {*/
+        if (null != httpSession.getAttribute("session")) {
 
-            List<Fixtures> fixtures = scheduleService.fixturesAndResults("mens");
-            MapFixturesUtil.mapResults(fixtures);
+        List<Fixtures> fixtures = scheduleService.fixturesAndResults("mens");
+        MapFixturesUtil.mapResults(fixtures);
 
-            List<Fixtures> knockOutFixtures = scheduleService.fixturesAndResults("mens_knockouts");
-            MapFixturesUtil.mapKnockOutResults(knockOutFixtures);
+        List<Fixtures> knockOutFixtures = scheduleService.fixturesAndResults("mens_knockouts");
+        MapFixturesUtil.mapKnockOutResults(knockOutFixtures);
 
-            List<Fixtures> combinedFixtures = new ArrayList<>(fixtures);
-            if (knockOutFixtures.size() >0){
-                combinedFixtures = MapFixturesUtil.addAllFixtures(knockOutFixtures, combinedFixtures);
-            }
+        List<Fixtures> combinedFixtures = new ArrayList<>(fixtures);
+        if (knockOutFixtures.size() > 0) {
+            combinedFixtures = MapFixturesUtil.addAllFixtures(knockOutFixtures, combinedFixtures);
+        }
 
-            Map<String, Map<String, List<Fixtures>>>  sessionFixtures = getSessionFixtures(combinedFixtures);
+        LinkedHashMap<String, List<Fixtures>> mensSessionFixtures = MapFixturesUtil.mapSessionFixtures(combinedFixtures);
 
-            model.addAttribute("session", httpSession.getAttribute("session"));
-            model.addAttribute("sessionFixtures", sessionFixtures);
+        List<Fixtures> mixedFixtures = scheduleService.fixturesAndResults("mixed");
+        MapFixturesUtil.mapResults(mixedFixtures);
 
-            return "users/sessionFixtures";
-        /*} else {
-            return "/";
-        }*/
+        List<Fixtures> mixedKnockOutFixtures = scheduleService.fixturesAndResults("mixed_knockouts");
+        MapFixturesUtil.mapKnockOutResults(mixedKnockOutFixtures);
+
+        List<Fixtures> mixedCombinedFixtures = new ArrayList<>(mixedFixtures);
+        if (knockOutFixtures.size() > 0) {
+            mixedCombinedFixtures = MapFixturesUtil.addAllFixtures(mixedKnockOutFixtures, mixedCombinedFixtures);
+        }
+
+        LinkedHashMap<String, List<Fixtures>> mixedSessionFixtures = MapFixturesUtil.mapSessionFixtures(mixedCombinedFixtures);
+
+        model.addAttribute("session", httpSession.getAttribute("session"));
+        model.addAttribute("mensSessionFixtures", mensSessionFixtures);
+        model.addAttribute("mixedSessionFixtures", mixedSessionFixtures);
+
+        return "users/sessionFixtures";
+        } else {
+            return "redirect:/index";
+        }
     }
 
     // Show Standings page

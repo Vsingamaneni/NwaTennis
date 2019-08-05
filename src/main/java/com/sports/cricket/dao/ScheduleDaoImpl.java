@@ -58,8 +58,12 @@ public class ScheduleDaoImpl implements ScheduleDao, Serializable {
         }
 
         String sql = "SELECT * FROM " + type;
-
-        List<Fixtures> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Fixtures.class));
+        List<Fixtures> result = null;
+        try {
+             result = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Fixtures.class));
+        }catch (Exception ex){
+            System.out.println(ex);
+        }
 
         return result;
     }
