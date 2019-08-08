@@ -64,16 +64,19 @@ public class MapFixturesUtil {
     public static void setResults(HashMap<String, List<Fixtures>> fixturesList){
         if (fixturesList.size() > 0){
             for (Map.Entry<String, List<Fixtures>> entry : fixturesList.entrySet()) {
-                List<Fixtures> fixtures = entry.getValue();
-                if (!CollectionUtils.isEmpty(fixtures)){
-                    for (Fixtures game : fixtures){
-                        if (null != game.getAwayTeamScore() && null != game.getAwayTeamScore()){
-                            game.setResult(game.getHomeTeamScore() + " - " + game.getAwayTeamScore());
-                            game.setViewStats(TENNIS_NIK+game.getStats());
-                        } else {
-                            game.setResult("vs");
-                        }
-                    }
+                mapListFixtures(entry.getValue());
+            }
+        }
+    }
+
+    public static void mapListFixtures(List<Fixtures> fixtures){
+        if (!CollectionUtils.isEmpty(fixtures)){
+            for (Fixtures game : fixtures){
+                game.setViewStats(TENNIS_NIK+game.getStats());
+                if (null != game.getAwayTeamScore() && null != game.getAwayTeamScore()){
+                    game.setResult(game.getHomeTeamScore() + " - " + game.getAwayTeamScore());
+                } else {
+                    game.setResult("vs");
                 }
             }
         }

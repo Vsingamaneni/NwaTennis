@@ -101,13 +101,13 @@
             <td style="color: ghostwhite; ">${finals.time}</td>
             <td style="color: ghostwhite; ">${finals.team1}</td>
             <c:if test="${not empty finals.homeTeamScore1}">
-                <td style="color: ghostwhite; ">${finals.homeTeamScore1} - ${finals.awayTeamScore1} <br/>
+                <td style="color: ghostwhite; "><a style="text-decoration: none;" href="${fixtures.viewStats}" target="_blank">${finals.homeTeamScore1} - ${finals.awayTeamScore1} <br/>
                         ${finals.homeTeamScore2} - ${finals.awayTeamScore2} <br/>
-                        ${finals.homeTeamScore3} - ${finals.awayTeamScore3} <br/>
+                        ${finals.homeTeamScore3} - ${finals.awayTeamScore3} </a><br/>
                 </td>
             </c:if>
             <c:if test="${empty finals.homeTeamScore1}">
-                <td style="color: ghostwhite; "> vs </td>
+                <td style="color: ghostwhite; "><a style="text-decoration: none;" href="${fixtures.viewStats}" target="_blank"> vs </a></td>
             </c:if>
             <td style="color: ghostwhite; ">${finals.team2}</td>
             <td style="color: ghostwhite; " >${fixtures.referee}</td>
@@ -142,12 +142,12 @@
             <td style="color: ghostwhite; ">${fixtures.time}</td>
             <td style="color: ghostwhite; ">${fixtures.team1}</td>
             <c:if test="${not empty fixtures.homeTeamScore1}">
-                <td style="color: ghostwhite; ">${fixtures.homeTeamScore1} - ${fixtures.awayTeamScore1}<br/>
+                <td style="color: ghostwhite; "><a style="text-decoration: none;" href="${fixtures.viewStats}" target="_blank">${fixtures.homeTeamScore1} - ${fixtures.awayTeamScore1}<br/>
                         ${fixtures.homeTeamScore2} - ${fixtures.awayTeamScore2} <br/>
-                        ${fixtures.homeTeamScore3} - ${fixtures.awayTeamScore3} </td>
+                        ${fixtures.homeTeamScore3} - ${fixtures.awayTeamScore3} </a></td>
             </c:if>
             <c:if test="${empty fixtures.homeTeamScore1}">
-                <td style="color: ghostwhite; "> vs </td>
+                <td style="color: ghostwhite; "><a style="text-decoration: none;" href="${fixtures.viewStats}" target="_blank"> vs </a></td>
             </c:if>
             <td style="color: ghostwhite; ">${fixtures.team2}</td>
             <td style="color: ghostwhite; " >${fixtures.referee}</td>
@@ -184,12 +184,12 @@
             <td style="color: ghostwhite; ">${fixtures.time}</td>
             <td style="color: ghostwhite; ">${fixtures.team1}</td>
             <c:if test="${not empty fixtures.homeTeamScore1}">
-                <td style="color: ghostwhite; ">${fixtures.homeTeamScore1} - ${fixtures.awayTeamScore1}<br/>
+                <td style="color: ghostwhite; "><a style="text-decoration: none;" href="${fixtures.viewStats}" target="_blank">${fixtures.homeTeamScore1} - ${fixtures.awayTeamScore1}<br/>
                         ${fixtures.homeTeamScore2} - ${fixtures.awayTeamScore2} <br/>
-                        ${fixtures.homeTeamScore3} - ${fixtures.awayTeamScore3} </td>
+                        ${fixtures.homeTeamScore3} - ${fixtures.awayTeamScore3} </a></td>
             </c:if>
             <c:if test="${empty fixtures.homeTeamScore1}">
-                <td style="color: ghostwhite; "> vs </td>
+                <td style="color: ghostwhite; "><a style="text-decoration: none;" href="${fixtures.viewStats}" target="_blank"> vs </a></td>
             </c:if>
             <td style="color: ghostwhite; ">${fixtures.team2}</td>
             <td style="color: ghostwhite; " >${fixtures.referee}</td>
@@ -227,10 +227,10 @@
             <td align = "center" style="color: ghostwhite;">${fixtures.time}</td>
             <td align = "center" style="color: ghostwhite;">${fixtures.team1}</td>
             <c:if test="${not empty fixtures.homeTeamScore}">
-                <td align = "center" style="color: ghostwhite;">${fixtures.homeTeamScore} - ${fixtures.awayTeamScore}</td>
+                <td align = "center" style="color: ghostwhite;"><a style="text-decoration: none;" href="${fixtures.viewStats}" target="_blank">${fixtures.homeTeamScore} - ${fixtures.awayTeamScore}</a></td>
             </c:if>
             <c:if test="${empty fixtures.homeTeamScore}">
-                <td align = "center" style="color: ghostwhite;"> vs </td>
+                <td align = "center" style="color: ghostwhite;"><a style="text-decoration: none;" href="${fixtures.viewStats}" target="_blank"> vs </a></td>
             </c:if>
             <td align = "center" style="color: ghostwhite;">${fixtures.team2}</td>
             <td align = "center" style="color: ghostwhite;" >${fixtures.referee}</td>
@@ -272,7 +272,7 @@
                 <td align = "center" style="color: ghostwhite; "><a style="text-decoration: none;" href="${fixtures.viewStats}" target="_blank">${fixtures.result}</a></td>
             </c:if>
             <c:if test="${empty fixtures.viewStats}">
-                <td align="center" style="color: ghostwhite; ">${fixtures.result}</td>
+                <td align="center" style="color: ghostwhite; "><a style="text-decoration: none;" href="${fixtures.viewStats}" target="_blank">${fixtures.result}</a></td>
             </c:if>
             <td align = "center" style="color: ghostwhite;">${fixtures.team2}</td>
             <td align = "center" style="color: ghostwhite;" >${fixtures.referee}</td>

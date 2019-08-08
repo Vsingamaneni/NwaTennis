@@ -26,6 +26,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import static com.sports.cricket.tennis.util.MapFixturesUtil.getQuartersFixtures;
+import static com.sports.cricket.tennis.util.MapFixturesUtil.mapListFixtures;
 import static com.sports.cricket.tennis.util.MapFixturesUtil.mapRoundOfSixteenFixtures;
 import static com.sports.cricket.tennis.util.StandingsUtil.rankStandings;
 
@@ -187,21 +188,25 @@ public class UserController implements Serializable {
         if (knockOutFixtures.size() > 0) {
             HashMap<String, List<Fixtures>> roundOfSixteen = mapRoundOfSixteenFixtures(knockOutFixtures);
             if (roundOfSixteen.size() > 0) {
+                MapFixturesUtil.setResults(roundOfSixteen);
                 model.addAttribute("roundOfSixteen", roundOfSixteen);
             }
 
             List<Fixtures> quartersFixtures = getQuartersFixtures(knockOutFixtures, "qf");
             if (quartersFixtures.size() > 0) {
+                mapListFixtures(quartersFixtures);
                 model.addAttribute("quartersFixtures", quartersFixtures);
             }
 
             List<Fixtures> semisFixtures = getQuartersFixtures(knockOutFixtures, "sf");
             if (semisFixtures.size() > 0) {
+                mapListFixtures(semisFixtures);
                 model.addAttribute("semisFixtures", semisFixtures);
             }
 
             List<Fixtures> finals = getQuartersFixtures(knockOutFixtures, "final");
             if (finals.size() == 1) {
+                mapListFixtures(finals);
                 model.addAttribute("finals", finals.get(0));
             }
 
